@@ -94,7 +94,7 @@ def run_query(q: str, search, reranker, top_k: int, client=None) -> tuple[str, l
         try:
             if client is None:
                 from openai import OpenAI
-                client = OpenAI()
+                client = OpenAI(timeout=90, max_retries=2)
             ctx = "\n\n".join(contexts)
             resp = client.chat.completions.create(
                 model=GENERATION_MODEL,
@@ -142,10 +142,11 @@ def main(argv=None):
     client = None
     if OPENAI_API_KEY:
         from openai import OpenAI
-        client = OpenAI()
+        client = OpenAI(timeout=90, max_retries=2)
     t_start = time.time()
 
     for i, item in enumerate(test_set):
+        time.sleep(float(os.getenv("API_INTERVAL_SECONDS", "0")))
         answer, contexts, generation_mode, generation_model = run_query(item["question"], search, reranker, top_k, client)
         answers.append({
             "id":           item["id"],

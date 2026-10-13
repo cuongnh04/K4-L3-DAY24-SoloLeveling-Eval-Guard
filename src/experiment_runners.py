@@ -53,7 +53,7 @@ def run_phase_b():
         results.append({"question_id": qid, **asdict(result)})
     judgments = []
     from openai import OpenAI
-    binary_client = OpenAI()
+    binary_client = OpenAI(timeout=90, max_retries=2)
     for human in humans:
         # Exact supplied answer. Never pass human_label or human_note into judge_binary.
         result = judge_binary(human["question"], human["model_answer"],

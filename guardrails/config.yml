@@ -4,6 +4,9 @@ models:
   - type: main
     engine: openai
     model: gpt-4o-mini
+  - type: embeddings
+    engine: SentenceTransformers
+    model: sentence-transformers/all-MiniLM-L6-v2
 
 instructions:
   - type: general

@@ -5,6 +5,8 @@ import hashlib
 import inspect
 import json
 import math
+import os
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -109,7 +111,8 @@ def judge_binary(question, answer, reference, *, client=None):
     """Provided bridge to 0/1 calibration. Never accepts human_label/human_note."""
     if client is None:
         from openai import OpenAI
-        client = OpenAI()
+        client = OpenAI(timeout=90, max_retries=2)
+    time.sleep(float(os.getenv("API_INTERVAL_SECONDS", "0")))
     response = client.chat.completions.create(
         model=JUDGE_MODEL, temperature=0,
         response_format={"type": "json_object"},

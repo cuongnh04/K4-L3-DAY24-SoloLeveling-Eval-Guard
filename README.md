@@ -1,5 +1,9 @@
 # K4 Track 3B — Production Eval + Guardrail Stack
 
+> Bài làm: Nguyễn Huy Cương — 2A202602842. Đã triển khai code và lưu 50 answers;
+> **chưa hoàn tất các batch đánh giá live**. Xem [trạng thái thực tế](doc/STATUS.md)
+> và [hướng dẫn chạy](doc/RUN.md). Nội dung phía dưới là hướng dẫn gốc của đề.
+
 **Bài nhóm: mỗi nhóm dùng và nộp một repo chung của trưởng nhóm.**
 Mỗi người khai phần thực tế đã làm trong [doc/TEAM.md](doc/TEAM.md).
 
